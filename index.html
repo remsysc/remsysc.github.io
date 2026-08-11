@@ -173,10 +173,64 @@
     </div>
   </section>
 
+  <!-- Animated Background Blocks -->
+  <canvas id="bg-canvas"></canvas>
+
   <!-- Footer -->
   <footer class="footer">
     <p>「 crafted with dedication 」</p>
   </footer>
+
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = document.body.scrollHeight;
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    const blocks = [];
+    const blockCount = 25;
+
+    for (let i = 0; i < blockCount; i++) {
+      blocks.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 20 + 8,
+        speed: Math.random() * 0.3 + 0.1,
+        opacity: Math.random() * 0.08 + 0.02,
+        drift: Math.random() * 0.5 - 0.25
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      blocks.forEach(block => {
+        ctx.fillStyle = `rgba(88, 166, 255, ${block.opacity})`;
+        ctx.fillRect(block.x, block.y, block.size, block.size);
+
+        block.y -= block.speed;
+        block.x += block.drift;
+
+        if (block.y + block.size < 0) {
+          block.y = canvas.height + block.size;
+          block.x = Math.random() * canvas.width;
+        }
+
+        if (block.x < -block.size) block.x = canvas.width;
+        if (block.x > canvas.width) block.x = -block.size;
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 
 </body>
 </html>
