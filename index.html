@@ -460,13 +460,13 @@
     const userCountEl = document.getElementById('user-count');
 
     const users = [
-      { name: 'Taro Tanaka', color: '#58a6ff' },
-      { name: 'Setton', color: '#ff6e96' },
-      { name: 'Kanra', color: '#ffd700' },
-      { name: 'Bakyura', color: '#7ee787' },
-      { name: 'Saika', color: '#ff4444' },
-      { name: 'Pure Water 100%', color: '#87ceeb' },
-      { name: 'Chrome', color: '#c9d1d9' }
+      { name: 'Taro Tanaka', color: '#58a6ff', avatar: '田' },
+      { name: 'Setton', color: '#ff6e96', avatar: 'セ' },
+      { name: 'Kanra', color: '#ffd700', avatar: '甘' },
+      { name: 'Bakyura', color: '#7ee787', avatar: 'バ' },
+      { name: 'Saika', color: '#ff4444', avatar: '罪' },
+      { name: 'Pure Water 100%', color: '#87ceeb', avatar: '水' },
+      { name: 'Chrome', color: '#c9d1d9', avatar: 'ク' }
     ];
 
     const messages = [
@@ -523,6 +523,11 @@
       return user ? user.color : '#c9d1d9';
     }
 
+    function getUserAvatar(name) {
+      const user = users.find(u => u.name === name);
+      return user ? user.avatar : '?';
+    }
+
     function addMessage(html) {
       const div = document.createElement('div');
       div.innerHTML = html;
@@ -547,7 +552,8 @@
     function postChat() {
       const msg = messages[msgIndex % messages.length];
       const color = getUserColor(msg.user);
-      addMessage(`<div class="chat-msg"><span class="chat-name" style="color:${color}">${msg.user}</span><span class="chat-text">${msg.text}</span></div>`);
+      const avatar = getUserAvatar(msg.user);
+      addMessage(`<div class="chat-msg"><span class="chat-avatar" style="border-color:${color};color:${color}">${avatar}</span><span class="chat-name" style="color:${color}">${msg.user}</span><span class="chat-text">${msg.text}</span></div>`);
       msgIndex++;
     }
 
@@ -566,16 +572,58 @@
     }
 
     // Start chat simulation
-    setTimeout(() => postChat(), 1000);
+    const typingIndicator = document.createElement('div');
+    typingIndicator.className = 'chat-typing';
+    typingIndicator.innerHTML = '<span class="typing-dots">...</span>';
+    typingIndicator.style.display = 'none';
+    chatBox.appendChild(typingIndicator);
+
+    // Chat sound effect
+    const chatSound = new Audio('data:audio/wav;base64,UklGRigBAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQBAABkAHwAeABsAFgAPAAkAAwA+P/o/9z/1P/Q/9D/1P/c/+j/9P8AAAwAGAAkACwAMAAwADAALAAkABgADAAAAPT/6P/c/9T/0P/M/8z/0P/U/9z/6P/0/wAADAAYACQAMAA4AEAARABEAEAAOAAwACQAFAAIAPz/8P/k/9z/2P/U/9T/2P/c/+T/8P/8/wgAFAAkADAAOABAAEgASABIAEAAOAAsACAAFAAIAPj/7P/g/9j/0P/M/8z/0P/Y/+D/7P/4/wQAEAAcACgANAA8AEQASABIAEQAPAAyACgAHAAQAAQA+P/s/+D/2P/U/9D/0P/U/9j/4P/s//j/BAAQABwAJAAwADgAPABAAEAAOAA0ACgAHAAQAAQA');
+
+    function playSound() {
+      const s = chatSound.cloneNode();
+      s.volume = 0.15;
+      s.play().catch(() => {});
+    }
+
+    function showTyping(userName) {
+      const color = getUserColor(userName);
+      typingIndicator.innerHTML = `<span class="chat-name" style="color:${color}">${userName}</span><span class="typing-dots">...</span>`;
+      typingIndicator.style.display = 'flex';
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function hideTyping() {
+      typingIndicator.style.display = 'none';
+    }
+
+    setTimeout(() => {
+      const msg = messages[0];
+      showTyping(msg.user);
+      setTimeout(() => {
+        hideTyping();
+        postChat();
+        playSound();
+      }, 1500);
+    }, 1000);
 
     setInterval(() => {
       const rand = Math.random();
       if (rand < 0.7) {
-        postChat();
+        const msg = messages[msgIndex % messages.length];
+        showTyping(msg.user);
+        const typeDuration = 1000 + Math.random() * 2000;
+        setTimeout(() => {
+          hideTyping();
+          postChat();
+          playSound();
+        }, typeDuration);
       } else {
         postJoinLeave();
+        playSound();
       }
-    }, 3000);
+    }, 4000);
 
     // === EASTER EGGS ===
 
