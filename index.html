@@ -460,13 +460,13 @@
     const userCountEl = document.getElementById('user-count');
 
     const users = [
-      { name: 'Taro Tanaka', color: '#58a6ff', avatar: '田' },
-      { name: 'Setton', color: '#ff6e96', avatar: 'セ' },
-      { name: 'Kanra', color: '#ffd700', avatar: '甘' },
-      { name: 'Bakyura', color: '#7ee787', avatar: 'バ' },
-      { name: 'Saika', color: '#ff4444', avatar: '罪' },
-      { name: 'Pure Water 100%', color: '#87ceeb', avatar: '水' },
-      { name: 'Chrome', color: '#c9d1d9', avatar: 'ク' }
+      { name: 'Taro Tanaka', color: '#58a6ff', icon: '👤', bubble: '#1a3a5c' },
+      { name: 'Setton', color: '#ff6e96', icon: '🏍', bubble: '#3d1a2e' },
+      { name: 'Kanra', color: '#ffd700', icon: '✦', bubble: '#3d3a1a' },
+      { name: 'Bakyura', color: '#7ee787', icon: '⚡', bubble: '#1a3d1f' },
+      { name: 'Saika', color: '#ff4444', icon: '♥', bubble: '#3d1a1a' },
+      { name: 'Pure Water 100%', color: '#87ceeb', icon: '💧', bubble: '#1a2e3d' },
+      { name: 'Chrome', color: '#c9d1d9', icon: '◆', bubble: '#2a2a2e' }
     ];
 
     const messages = [
@@ -525,7 +525,12 @@
 
     function getUserAvatar(name) {
       const user = users.find(u => u.name === name);
-      return user ? user.avatar : '?';
+      return user ? user.icon : '?';
+    }
+
+    function getUserBubble(name) {
+      const user = users.find(u => u.name === name);
+      return user ? user.bubble : '#2a2a2e';
     }
 
     function addMessage(html) {
@@ -552,8 +557,9 @@
     function postChat() {
       const msg = messages[msgIndex % messages.length];
       const color = getUserColor(msg.user);
-      const avatar = getUserAvatar(msg.user);
-      addMessage(`<div class="chat-msg"><span class="chat-avatar" style="border-color:${color};color:${color}">${avatar}</span><span class="chat-name" style="color:${color}">${msg.user}</span><span class="chat-text">${msg.text}</span></div>`);
+      const icon = getUserAvatar(msg.user);
+      const bubble = getUserBubble(msg.user);
+      addMessage(`<div class="chat-msg"><div class="chat-icon" style="background:${color}">${icon}</div><div class="chat-bubble" style="background:${bubble};border-color:${color}"><span class="chat-name" style="color:${color}">${msg.user}</span><span class="chat-text">${msg.text}</span></div></div>`);
       msgIndex++;
     }
 
