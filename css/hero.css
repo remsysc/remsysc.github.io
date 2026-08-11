@@ -1,0 +1,65 @@
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 3rem 3rem;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  max-width: 1000px;
+}
+
+.hero-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -1px;
+}
+
+.hero-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.5px;
+}
+
+.hero-terminal {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--border);
+  display: inline-block;
+}
+
+.terminal-prompt {
+  color: var(--text-primary);
+  margin-right: 0.5rem;
+}
+
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero-gif img {
+  width: 250px;
+  border-radius: 0;
+  opacity: 0.9;
+}

@@ -1,0 +1,139 @@
+/* Tech Grid */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1px;
+  max-width: 650px;
+  border: 1px solid var(--border);
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.2rem;
+  transition: background 0.3s;
+}
+
+.tech-item:hover {
+  background: var(--bg-secondary);
+}
+
+.tech-item img {
+  width: 36px;
+  height: 36px;
+  opacity: 0.8;
+}
+
+.tech-item span {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Projects */
+.projects-gif {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.projects-gif img {
+  width: 220px;
+  border-radius: 0;
+  opacity: 0.85;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  border: 1px solid var(--border);
+}
+
+.project-card {
+  text-decoration: none;
+  color: var(--text-primary);
+  padding: 1.8rem;
+  transition: background 0.3s;
+}
+
+.project-card:hover {
+  background: var(--bg-secondary);
+}
+
+.project-icon {
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.project-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.project-card p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-tags span {
+  font-size: 0.6rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Currently Learning */
+.learning-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+}
+
+.learning-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+
+.learning-item:last-child {
+  border-bottom: none;
+}
+
+.learning-item:hover {
+  background: var(--bg-secondary);
+}
+
+.learning-item img {
+  opacity: 0.7;
+}
+
+.learning-item h4 {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+  font-weight: 400;
+}
+
+.learning-item p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}

@@ -578,18 +578,33 @@
     typingIndicator.style.display = 'none';
     chatBox.appendChild(typingIndicator);
 
-    // Chat sound effect
-    const chatSound = new Audio('data:audio/wav;base64,UklGRigBAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQBAABkAHwAeABsAFgAPAAkAAwA+P/o/9z/1P/Q/9D/1P/c/+j/9P8AAAwAGAAkACwAMAAwADAALAAkABgADAAAAPT/6P/c/9T/0P/M/8z/0P/U/9z/6P/0/wAADAAYACQAMAA4AEAARABEAEAAOAAwACQAFAAIAPz/8P/k/9z/2P/U/9T/2P/c/+T/8P/8/wgAFAAkADAAOABAAEgASABIAEAAOAAsACAAFAAIAPj/7P/g/9j/0P/M/8z/0P/Y/+D/7P/4/wQAEAAcACgANAA8AEQASABIAEQAPAAyACgAHAAQAAQA+P/s/+D/2P/U/9D/0P/U/9j/4P/s//j/BAAQABwAJAAwADgAPABAAEAAOAA0ACgAHAAQAAQA');
+    // Chat sound effect — soft notification blip
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
     function playSound() {
-      const s = chatSound.cloneNode();
-      s.volume = 0.15;
-      s.play().catch(() => {});
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+        osc.type = 'sine';
+        osc.start(audioCtx.currentTime);
+        osc.stop(audioCtx.currentTime + 0.15);
+      } catch(e) {}
     }
+
+    // Resume audio context on first interaction
+    document.addEventListener('click', () => {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }, { once: true });
 
     function showTyping(userName) {
       const color = getUserColor(userName);
-      typingIndicator.innerHTML = `<span class="chat-name" style="color:${color}">${userName}</span><span class="typing-dots">...</span>`;
+      typingIndicator.innerHTML = `<span class="typing-name" style="color:${color}">${userName}</span><span class="typing-dots">...</span>`;
       typingIndicator.style.display = 'flex';
       chatBox.scrollTop = chatBox.scrollHeight;
     }

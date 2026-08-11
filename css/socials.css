@@ -1,0 +1,101 @@
+/* Open for Opportunities */
+.hire-container {
+  display: flex;
+  justify-content: center;
+}
+
+.hire-card {
+  border: 1px solid var(--border);
+  padding: 3rem;
+  max-width: 600px;
+  text-align: center;
+}
+
+.hire-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.hire-text strong {
+  color: var(--text-primary);
+}
+
+.hire-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.hire-tags span {
+  font-size: 0.65rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hire-btn {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 400;
+  padding: 0.8rem 2.5rem;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s;
+}
+
+.hire-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+/* Socials */
+.socials-gif {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.socials-gif img {
+  width: 120px;
+  border-radius: 0;
+  opacity: 0.85;
+}
+
+.socials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  border: 1px solid var(--border);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.social-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: 1rem 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s, background 0.3s;
+  border-right: 1px solid var(--border);
+}
+
+.social-link:last-child {
+  border-right: none;
+}
+
+.social-link:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}

@@ -1,0 +1,92 @@
+/* About */
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.about-card {
+  flex: 1;
+  border: 1px solid var(--border);
+  padding: 2rem;
+}
+
+.about-row {
+  display: flex;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-row:last-child {
+  border-bottom: none;
+}
+
+.about-row .label {
+  font-weight: 400;
+  font-size: 0.75rem;
+  min-width: 140px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-row .separator {
+  margin: 0 1rem;
+  color: var(--text-muted);
+}
+
+.about-row .value {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.about-gif img {
+  width: 180px;
+  border-radius: 0;
+  opacity: 0.85;
+}
+
+/* What I Do */
+.specialty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1px;
+  border: 1px solid var(--border);
+}
+
+.specialty-card {
+  padding: 2rem;
+  border: none;
+  border-right: 1px solid var(--border);
+  transition: background 0.3s;
+}
+
+.specialty-card:last-child {
+  border-right: none;
+}
+
+.specialty-card:hover {
+  background: var(--bg-secondary);
+}
+
+.specialty-icon {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.specialty-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.specialty-card p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
