@@ -195,6 +195,9 @@
 
     const blocks = [];
     const blockCount = 25;
+    const glyphs = [];
+    const glyphCount = 15;
+    const jpChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
 
     for (let i = 0; i < blockCount; i++) {
       blocks.push({
@@ -204,6 +207,18 @@
         speed: Math.random() * 0.3 + 0.1,
         opacity: Math.random() * 0.08 + 0.02,
         drift: Math.random() * 0.5 - 0.25
+      });
+    }
+
+    for (let i = 0; i < glyphCount; i++) {
+      glyphs.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        char: jpChars[Math.floor(Math.random() * jpChars.length)],
+        size: Math.random() * 14 + 10,
+        speed: Math.random() * 0.25 + 0.08,
+        opacity: Math.random() * 0.06 + 0.02,
+        drift: Math.random() * 0.4 - 0.2
       });
     }
 
@@ -224,6 +239,24 @@
 
         if (block.x < -block.size) block.x = canvas.width;
         if (block.x > canvas.width) block.x = -block.size;
+      });
+
+      glyphs.forEach(glyph => {
+        ctx.font = `${glyph.size}px "Fira Code", monospace`;
+        ctx.fillStyle = `rgba(255, 110, 150, ${glyph.opacity})`;
+        ctx.fillText(glyph.char, glyph.x, glyph.y);
+
+        glyph.y -= glyph.speed;
+        glyph.x += glyph.drift;
+
+        if (glyph.y < 0) {
+          glyph.y = canvas.height + glyph.size;
+          glyph.x = Math.random() * canvas.width;
+          glyph.char = jpChars[Math.floor(Math.random() * jpChars.length)];
+        }
+
+        if (glyph.x < -glyph.size) glyph.x = canvas.width;
+        if (glyph.x > canvas.width) glyph.x = -glyph.size;
       });
 
       requestAnimationFrame(animate);
