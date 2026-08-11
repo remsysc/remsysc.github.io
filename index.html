@@ -332,6 +332,18 @@
     </div>
   </section>
 
+  <!-- Dollars Chat Room -->
+  <section class="section">
+    <h2 class="section-title">>>  Dollars Chat Room</h2>
+    <div class="chat-room">
+      <div class="chat-header">
+        <span class="chat-status">LIVE</span>
+        <span class="chat-users"><span id="user-count">3</span> online</span>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <p>「 crafted with dedication 」</p>
@@ -442,6 +454,128 @@
     }
 
     animate();
+
+    // === DOLLARS CHAT ROOM ===
+    const chatBox = document.getElementById('chat-messages');
+    const userCountEl = document.getElementById('user-count');
+
+    const users = [
+      { name: 'Taro Tanaka', color: '#58a6ff' },
+      { name: 'Setton', color: '#ff6e96' },
+      { name: 'Kanra', color: '#ffd700' },
+      { name: 'Bakyura', color: '#7ee787' },
+      { name: 'Saika', color: '#ff4444' },
+      { name: 'Pure Water 100%', color: '#87ceeb' },
+      { name: 'Chrome', color: '#c9d1d9' }
+    ];
+
+    const messages = [
+      { user: 'Taro Tanaka', text: 'Good evening everyone.' },
+      { user: 'Kanra', text: 'Ara ara~ what brings everyone here tonight?' },
+      { user: 'Setton', text: 'Just passing through.' },
+      { user: 'Bakyura', text: 'Yo! Anything interesting going on?' },
+      { user: 'Taro Tanaka', text: 'Not really. Just the usual.' },
+      { user: 'Kanra', text: 'Ikebukuro is never boring though, is it~?' },
+      { user: 'Setton', text: 'That depends on your definition of boring.' },
+      { user: 'Saika', text: 'love... love...' },
+      { user: 'Bakyura', text: 'Whoa, Saika is here. Things are getting weird.' },
+      { user: 'Kanra', text: 'Have you heard the latest rumors about the Headless Rider?' },
+      { user: 'Taro Tanaka', text: 'The one on the black motorcycle?' },
+      { user: 'Setton', text: "...Let's change the subject." },
+      { user: 'Pure Water 100%', text: 'I saw something strange near Sunshine 60 today.' },
+      { user: 'Kanra', text: 'Oh? Do tell~' },
+      { user: 'Chrome', text: 'Is this chat always this active?' },
+      { user: 'Bakyura', text: 'Only when Kanra is stirring things up lol' },
+      { user: 'Kanra', text: "Me? I'm just a humble information broker~" },
+      { user: 'Taro Tanaka', text: 'Sure you are...' },
+      { user: 'Setton', text: 'I should go. Stay safe everyone.' },
+      { user: 'Saika', text: 'love... everyone... love...' },
+      { user: 'Pure Water 100%', text: 'The Dollars are quiet tonight.' },
+      { user: 'Kanra', text: "That's what makes it interesting, don't you think?" },
+      { user: 'Bakyura', text: 'Anyway I gotta bounce. Later!' },
+      { user: 'Taro Tanaka', text: 'See you around.' },
+      { user: 'Chrome', text: 'What even are the Dollars?' },
+      { user: 'Kanra', text: 'Haha~ everyone asks that eventually.' }
+    ];
+
+    const joinLeaveMessages = [
+      { type: 'join', user: 'Taro Tanaka' },
+      { type: 'leave', user: 'Bakyura' },
+      { type: 'join', user: 'Setton' },
+      { type: 'leave', user: 'Kanra' },
+      { type: 'join', user: 'Saika' },
+      { type: 'join', user: 'Kanra' },
+      { type: 'leave', user: 'Setton' },
+      { type: 'join', user: 'Pure Water 100%' },
+      { type: 'leave', user: 'Chrome' },
+      { type: 'join', user: 'Bakyura' },
+      { type: 'leave', user: 'Saika' },
+      { type: 'join', user: 'Chrome' }
+    ];
+
+    let msgIndex = 0;
+    let joinLeaveIndex = 0;
+    let onlineCount = 3;
+    const maxMessages = 12;
+
+    function getUserColor(name) {
+      const user = users.find(u => u.name === name);
+      return user ? user.color : '#c9d1d9';
+    }
+
+    function addMessage(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      div.style.opacity = '0';
+      div.style.transform = 'translateY(5px)';
+      div.style.transition = 'opacity 0.3s, transform 0.3s';
+      chatBox.appendChild(div);
+
+      setTimeout(() => {
+        div.style.opacity = '1';
+        div.style.transform = 'translateY(0)';
+      }, 50);
+
+      // Remove old messages
+      while (chatBox.children.length > maxMessages) {
+        chatBox.removeChild(chatBox.firstChild);
+      }
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function postChat() {
+      const msg = messages[msgIndex % messages.length];
+      const color = getUserColor(msg.user);
+      addMessage(`<div class="chat-msg"><span class="chat-name" style="color:${color}">${msg.user}</span><span class="chat-text">${msg.text}</span></div>`);
+      msgIndex++;
+    }
+
+    function postJoinLeave() {
+      const event = joinLeaveMessages[joinLeaveIndex % joinLeaveMessages.length];
+      const color = getUserColor(event.user);
+      if (event.type === 'join') {
+        onlineCount = Math.min(onlineCount + 1, 7);
+        addMessage(`<div class="chat-system"><span class="chat-name" style="color:${color}">${event.user}</span> has entered the chat.</div>`);
+      } else {
+        onlineCount = Math.max(onlineCount - 1, 2);
+        addMessage(`<div class="chat-system"><span class="chat-name" style="color:${color}">${event.user}</span> has left the chat.</div>`);
+      }
+      userCountEl.textContent = onlineCount;
+      joinLeaveIndex++;
+    }
+
+    // Start chat simulation
+    setTimeout(() => postChat(), 1000);
+
+    setInterval(() => {
+      const rand = Math.random();
+      if (rand < 0.7) {
+        postChat();
+      } else {
+        postJoinLeave();
+      }
+    }, 3000);
 
     // === EASTER EGGS ===
 
