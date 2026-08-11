@@ -460,13 +460,13 @@
     const userCountEl = document.getElementById('user-count');
 
     const users = [
-      { name: 'Taro Tanaka', color: '#58a6ff', icon: '田', bubble: 'linear-gradient(135deg, #7ec8e3, #4a90d9)', bubbleColor: '#7ec8e3', nameJp: '田中太郎' },
-      { name: 'Setton', color: '#c0c0c0', icon: 'セ', bubble: 'linear-gradient(135deg, #d0d0d0, #909090)', bubbleColor: '#d0d0d0', nameJp: 'セットン' },
-      { name: 'Kanra', color: '#ffa500', icon: '甘', bubble: 'linear-gradient(135deg, #ffcc00, #ff8800)', bubbleColor: '#ffcc00', nameJp: '甘楽' },
-      { name: 'Bakyura', color: '#7ee787', icon: 'バ', bubble: 'linear-gradient(135deg, #90ee90, #4caf50)', bubbleColor: '#90ee90', nameJp: 'バキュラ' },
-      { name: 'Saika', color: '#ff4444', icon: '罪', bubble: 'linear-gradient(135deg, #ff6666, #cc0000)', bubbleColor: '#ff6666', nameJp: '罪歌' },
-      { name: 'Pure Water 100%', color: '#87ceeb', icon: '水', bubble: 'linear-gradient(135deg, #b0e0e6, #5f9ea0)', bubbleColor: '#b0e0e6', nameJp: '純水100%' },
-      { name: 'Chrome', color: '#c9d1d9', icon: 'ク', bubble: 'linear-gradient(135deg, #e0e0e0, #a0a0a0)', bubbleColor: '#e0e0e0', nameJp: 'クロム' }
+      { name: 'Taro Tanaka', color: '#58a6ff', icon: 'assets/icon-tanaka.png', bubble: 'linear-gradient(135deg, #7ec8e3, #4a90d9)', bubbleColor: '#7ec8e3', nameJp: '田中太郎' },
+      { name: 'Setton', color: '#c0c0c0', icon: 'assets/icon-setton.png', bubble: 'linear-gradient(135deg, #d0d0d0, #909090)', bubbleColor: '#d0d0d0', nameJp: 'セットン' },
+      { name: 'Kanra', color: '#ffa500', icon: 'assets/icon-kanra.png', bubble: 'linear-gradient(135deg, #ffcc00, #ff8800)', bubbleColor: '#ffcc00', nameJp: '甘楽' },
+      { name: 'Bakyura', color: '#7ee787', icon: 'assets/icon-bakyura.png', bubble: 'linear-gradient(135deg, #90ee90, #4caf50)', bubbleColor: '#90ee90', nameJp: 'バキュラ' },
+      { name: 'Saika', color: '#ff4444', icon: 'assets/icon-saika.png', bubble: 'linear-gradient(135deg, #ff6666, #cc0000)', bubbleColor: '#ff6666', nameJp: '罪歌' },
+      { name: 'Pure Water 100%', color: '#87ceeb', icon: 'assets/icon-purewater.png', bubble: 'linear-gradient(135deg, #b0e0e6, #5f9ea0)', bubbleColor: '#b0e0e6', nameJp: '純水100%' },
+      { name: 'Chrome', color: '#c9d1d9', icon: 'assets/icon-chrome.png', bubble: 'linear-gradient(135deg, #e0e0e0, #a0a0a0)', bubbleColor: '#e0e0e0', nameJp: 'クロム' }
     ];
 
     const messages = [
@@ -590,7 +590,7 @@
       const bubble = getUserBubble(msg.user);
       const bubbleColor = getUserBubbleColor(msg.user);
       const nameJp = getUserNameJp(msg.user);
-      addMessage(`<div class="chat-msg"><div class="chat-icon" style="background:${color}" data-name="${nameJp}">${icon}</div><div class="chat-bubble" style="background:${bubble};--bubble-color:${bubbleColor}"><span class="chat-text">${msg.text}</span></div></div>`);
+      addMessage(`<div class="chat-msg"><div class="chat-icon-wrap"><img class="chat-icon" src="${icon}" alt="${msg.user}"/><span class="chat-icon-name">${nameJp}</span></div><div class="chat-bubble" style="background:${bubble};--bubble-color:${bubbleColor}"><span class="chat-text">${msg.text}</span></div></div>`);
       msgIndex++;
     }
 
