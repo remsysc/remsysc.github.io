@@ -534,8 +534,18 @@
 
     // Randomize starting point
     let msgIndex = Math.floor(Math.random() * messages.length);
-    let onlineCount = 3;
     const maxMessages = 12;
+
+    // Track who is actually in the chat room
+    const onlineUsers = new Set(['Taro Tanaka', 'Setton', 'Kanra']);
+
+    function getOnlineCount() {
+      return onlineUsers.size;
+    }
+
+    function updateOnlineDisplay() {
+      userCountEl.textContent = getOnlineCount();
+    }
 
     function getUserColor(name) {
       const user = users.find(u => u.name === name);
@@ -590,23 +600,39 @@
       const bubble = getUserBubble(msg.user);
       const bubbleColor = getUserBubbleColor(msg.user);
       const nameJp = getUserNameJp(msg.user);
+      // Ensure the user who posts is marked as online
+      if (!onlineUsers.has(msg.user)) {
+        onlineUsers.add(msg.user);
+        addMessage(`<div class="chat-system"><span class="chat-name" style="color:${color}">${nameJp}</span> が入室しました</div>`);
+        updateOnlineDisplay();
+      }
       addMessage(`<div class="chat-msg"><div class="chat-icon-wrap"><img class="chat-icon" src="${icon}" alt="${msg.user}"/><span class="chat-icon-name">${nameJp}</span></div><div class="chat-bubble" style="background:${bubble};--bubble-color:${bubbleColor}"><span class="chat-text">${msg.text}</span></div></div>`);
       msgIndex++;
     }
 
     function postJoinLeave() {
-      const randomUser = users[Math.floor(Math.random() * users.length)];
       const isJoin = Math.random() > 0.5;
-      const color = getUserColor(randomUser.name);
-      const nameJp = getUserNameJp(randomUser.name);
       if (isJoin) {
-        onlineCount = Math.min(onlineCount + 1, 7);
+        // Pick a user who is NOT currently online
+        const offlineUsers = users.filter(u => !onlineUsers.has(u.name));
+        if (offlineUsers.length === 0) return;
+        const randomUser = offlineUsers[Math.floor(Math.random() * offlineUsers.length)];
+        const color = getUserColor(randomUser.name);
+        const nameJp = getUserNameJp(randomUser.name);
+        onlineUsers.add(randomUser.name);
         addMessage(`<div class="chat-system"><span class="chat-name" style="color:${color}">${nameJp}</span> が入室しました</div>`);
       } else {
-        onlineCount = Math.max(onlineCount - 1, 2);
+        // Pick a user who IS currently online (but keep at least 2)
+        if (onlineUsers.size <= 2) return;
+        const onlineArray = Array.from(onlineUsers);
+        const randomUser = users.find(u => u.name === onlineArray[Math.floor(Math.random() * onlineArray.length)]);
+        if (!randomUser) return;
+        const color = getUserColor(randomUser.name);
+        const nameJp = getUserNameJp(randomUser.name);
+        onlineUsers.delete(randomUser.name);
         addMessage(`<div class="chat-system"><span class="chat-name" style="color:${color}">${nameJp}</span> が退室しました</div>`);
       }
-      userCountEl.textContent = onlineCount;
+      updateOnlineDisplay();
     }
 
     // Start chat simulation
