@@ -335,7 +335,30 @@
   <!-- Footer -->
   <footer class="footer">
     <p>「 crafted with dedication 」</p>
+    <p class="footer-easter">"I love humans. I love 'em so much I want to mess them up."</p>
   </footer>
+
+  <!-- Easter egg: Dollars password input (hidden) -->
+  <div id="dollars-overlay" class="dollars-overlay">
+    <div class="dollars-screen">
+      <p>DOLLARS</p>
+      <span>Welcome. You are now a member.</span>
+    </div>
+  </div>
+
+  <!-- 
+    ============================================
+    DOLLARS CHAT ROOM — ACTIVE USERS:
+    ============================================
+    Taro Tanaka — Online
+    Setton — Online  
+    Kanra — Online
+    Bakyura — Away
+    Saika — ...
+    ============================================
+    Password: Baccano
+    ============================================
+  -->
 
   <script>
     const canvas = document.getElementById('bg-canvas');
@@ -419,6 +442,58 @@
     }
 
     animate();
+
+    // === EASTER EGGS ===
+
+    // 1. Type "baccano" anywhere to trigger Dollars overlay
+    let typed = '';
+    document.addEventListener('keydown', (e) => {
+      typed += e.key.toLowerCase();
+      if (typed.includes('baccano')) {
+        typed = '';
+        const overlay = document.getElementById('dollars-overlay');
+        overlay.classList.add('active');
+        setTimeout(() => overlay.classList.remove('active'), 3000);
+      }
+      if (typed.length > 20) typed = typed.slice(-10);
+    });
+
+    // 2. Click nav brand 5 times for Dollars membership
+    let brandClicks = 0;
+    document.querySelector('.nav-brand').addEventListener('click', () => {
+      brandClicks++;
+      if (brandClicks === 5) {
+        const overlay = document.getElementById('dollars-overlay');
+        overlay.classList.add('active');
+        setTimeout(() => overlay.classList.remove('active'), 3000);
+        brandClicks = 0;
+      }
+    });
+
+    // 3. Idle title change — cycles through chat room names
+    const chatNames = [
+      'Jeremiah Laza | Full Stack Developer',
+      'Taro Tanaka has entered the chat',
+      'Setton is typing...',
+      'Kanra: Humans are interesting~',
+      'Bakyura has left the chat',
+      'DOLLARS — connection active'
+    ];
+    let titleIndex = 0;
+    let idleTimer;
+
+    function resetIdle() {
+      clearInterval(idleTimer);
+      document.title = chatNames[0];
+      idleTimer = setInterval(() => {
+        titleIndex = (titleIndex + 1) % chatNames.length;
+        document.title = chatNames[titleIndex];
+      }, 5000);
+    }
+
+    document.addEventListener('mousemove', resetIdle);
+    document.addEventListener('keydown', resetIdle);
+    resetIdle();
   </script>
 
 </body>
