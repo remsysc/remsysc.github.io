@@ -460,13 +460,13 @@
     const userCountEl = document.getElementById('user-count');
 
     const users = [
-      { name: 'Taro Tanaka', color: '#58a6ff', icon: '田', bubble: '#1a3a5c' },
-      { name: 'Setton', color: '#ff6e96', icon: 'セ', bubble: '#3d1a2e' },
-      { name: 'Kanra', color: '#ffd700', icon: '甘', bubble: '#3d3a1a' },
-      { name: 'Bakyura', color: '#7ee787', icon: 'バ', bubble: '#1a3d1f' },
-      { name: 'Saika', color: '#ff4444', icon: '罪', bubble: '#3d1a1a' },
-      { name: 'Pure Water 100%', color: '#87ceeb', icon: '水', bubble: '#1a2e3d' },
-      { name: 'Chrome', color: '#c9d1d9', icon: 'ク', bubble: '#2a2a2e' }
+      { name: 'Taro Tanaka', color: '#58a6ff', icon: '田', bubble: 'linear-gradient(135deg, #7ec8e3, #4a90d9)', bubbleColor: '#7ec8e3', nameJp: '田中太郎' },
+      { name: 'Setton', color: '#c0c0c0', icon: 'セ', bubble: 'linear-gradient(135deg, #d0d0d0, #909090)', bubbleColor: '#d0d0d0', nameJp: 'セットン' },
+      { name: 'Kanra', color: '#ffa500', icon: '甘', bubble: 'linear-gradient(135deg, #ffcc00, #ff8800)', bubbleColor: '#ffcc00', nameJp: '甘楽' },
+      { name: 'Bakyura', color: '#7ee787', icon: 'バ', bubble: 'linear-gradient(135deg, #90ee90, #4caf50)', bubbleColor: '#90ee90', nameJp: 'バキュラ' },
+      { name: 'Saika', color: '#ff4444', icon: '罪', bubble: 'linear-gradient(135deg, #ff6666, #cc0000)', bubbleColor: '#ff6666', nameJp: '罪歌' },
+      { name: 'Pure Water 100%', color: '#87ceeb', icon: '水', bubble: 'linear-gradient(135deg, #b0e0e6, #5f9ea0)', bubbleColor: '#b0e0e6', nameJp: '純水100%' },
+      { name: 'Chrome', color: '#c9d1d9', icon: 'ク', bubble: 'linear-gradient(135deg, #e0e0e0, #a0a0a0)', bubbleColor: '#e0e0e0', nameJp: 'クロム' }
     ];
 
     const messages = [
@@ -530,7 +530,17 @@
 
     function getUserBubble(name) {
       const user = users.find(u => u.name === name);
-      return user ? user.bubble : '#2a2a2e';
+      return user ? user.bubble : 'linear-gradient(135deg, #e0e0e0, #a0a0a0)';
+    }
+
+    function getUserBubbleColor(name) {
+      const user = users.find(u => u.name === name);
+      return user ? user.bubbleColor : '#e0e0e0';
+    }
+
+    function getUserNameJp(name) {
+      const user = users.find(u => u.name === name);
+      return user ? user.nameJp : name;
     }
 
     function addMessage(html) {
@@ -559,7 +569,9 @@
       const color = getUserColor(msg.user);
       const icon = getUserAvatar(msg.user);
       const bubble = getUserBubble(msg.user);
-      addMessage(`<div class="chat-msg"><div class="chat-icon" style="background:${color}">${icon}</div><div class="chat-bubble" style="background:${bubble};border-color:${color}"><span class="chat-name" style="color:${color}">${msg.user}</span><span class="chat-text">${msg.text}</span></div></div>`);
+      const bubbleColor = getUserBubbleColor(msg.user);
+      const nameJp = getUserNameJp(msg.user);
+      addMessage(`<div class="chat-msg"><div class="chat-icon" style="background:${color}" data-name="${nameJp}">${icon}</div><div class="chat-bubble" style="background:${bubble};--bubble-color:${bubbleColor}"><span class="chat-text">${msg.text}</span></div></div>`);
       msgIndex++;
     }
 
