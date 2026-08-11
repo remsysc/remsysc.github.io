@@ -187,7 +187,7 @@
 
     function resize() {
       canvas.width = window.innerWidth;
-      canvas.height = document.body.scrollHeight;
+      canvas.height = window.innerHeight;
     }
 
     resize();
@@ -201,8 +201,8 @@
 
     for (let i = 0; i < blockCount; i++) {
       blocks.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
         size: Math.random() * 20 + 8,
         speed: Math.random() * 0.3 + 0.1,
         opacity: Math.random() * 0.08 + 0.02,
@@ -212,8 +212,8 @@
 
     for (let i = 0; i < glyphCount; i++) {
       glyphs.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
         char: jpChars[Math.floor(Math.random() * jpChars.length)],
         size: Math.random() * 14 + 10,
         speed: Math.random() * 0.25 + 0.08,
