@@ -1,0 +1,102 @@
+/* Blog Page Styles */
+
+.blog-hero {
+  padding: 10rem 2rem 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.blog-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.blog-content {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0;
+}
+
+.blog-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(26, 26, 46, 0.5) 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.blog-empty-icon {
+  font-family: 'Fira Code', monospace;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.blog-empty h2 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.blog-empty p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Nav active state */
+.nav-links a.active {
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent-blue);
+  padding-bottom: 2px;
+}
+
+/* Future blog post cards */
+.blog-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.blog-post {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(26, 26, 46, 0.5) 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.blog-post:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.blog-post-date {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--accent-pink);
+  margin-bottom: 0.5rem;
+}
+
+.blog-post h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-post p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}

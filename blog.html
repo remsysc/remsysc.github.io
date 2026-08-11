@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Jeremiah Laza</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Animated Background Blocks -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">「 Rem 」</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+  </nav>
+
+  <!-- Blog Header -->
+  <section class="blog-hero">
+    <h1 class="section-title">>>  Blog</h1>
+    <p class="blog-subtitle">Thoughts on code, learning, and the dev journey.</p>
+  </section>
+
+  <!-- Empty State -->
+  <section class="section blog-content">
+    <div class="blog-empty">
+      <div class="blog-empty-icon">// 404</div>
+      <h2>No posts yet</h2>
+      <p>Still writing my first entry. Check back soon.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>「 crafted with dedication 」</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    const blocks = [];
+    const blockCount = 25;
+    const glyphs = [];
+    const glyphCount = 15;
+    const jpChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+
+    for (let i = 0; i < blockCount; i++) {
+      blocks.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        size: Math.random() * 20 + 8,
+        speed: Math.random() * 0.3 + 0.1,
+        opacity: Math.random() * 0.12 + 0.05,
+        drift: Math.random() * 0.5 - 0.25
+      });
+    }
+
+    for (let i = 0; i < glyphCount; i++) {
+      glyphs.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        char: jpChars[Math.floor(Math.random() * jpChars.length)],
+        size: Math.random() * 14 + 10,
+        speed: Math.random() * 0.25 + 0.08,
+        opacity: Math.random() * 0.1 + 0.04,
+        drift: Math.random() * 0.4 - 0.2
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      blocks.forEach(block => {
+        ctx.fillStyle = `rgba(88, 166, 255, ${block.opacity})`;
+        ctx.fillRect(block.x, block.y, block.size, block.size);
+
+        block.y -= block.speed;
+        block.x += block.drift;
+
+        if (block.y + block.size < 0) {
+          block.y = canvas.height + block.size;
+          block.x = Math.random() * canvas.width;
+        }
+
+        if (block.x < -block.size) block.x = canvas.width;
+        if (block.x > canvas.width) block.x = -block.size;
+      });
+
+      glyphs.forEach(glyph => {
+        ctx.font = `${glyph.size}px "Fira Code", monospace`;
+        ctx.fillStyle = `rgba(255, 110, 150, ${glyph.opacity})`;
+        ctx.fillText(glyph.char, glyph.x, glyph.y);
+
+        glyph.y -= glyph.speed;
+        glyph.x += glyph.drift;
+
+        if (glyph.y < 0) {
+          glyph.y = canvas.height + glyph.size;
+          glyph.x = Math.random() * canvas.width;
+          glyph.char = jpChars[Math.floor(Math.random() * jpChars.length)];
+        }
+
+        if (glyph.x < -glyph.size) glyph.x = canvas.width;
+        if (glyph.x > canvas.width) glyph.x = -glyph.size;
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
+</body>
+</html>
