@@ -1,15 +1,25 @@
-/* Blog Page Styles */
+/* Blog Page — Dollars Style */
 
 .blog-hero {
-  padding: 10rem 2rem 3rem;
-  max-width: 900px;
-  margin: 0 auto;
+  padding: 12rem 2rem 2rem;
+  text-align: center;
+}
+
+.blog-hero .section-title {
+  font-family: 'Fira Code', monospace;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
 .blog-subtitle {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
-  margin-top: 0.5rem;
+  font-family: 'Fira Code', monospace;
+  letter-spacing: 1px;
 }
 
 .blog-content {
@@ -20,83 +30,117 @@
   padding-top: 0;
 }
 
+/* Dollars-style empty state — centered, minimal, like a password screen */
 .blog-empty {
   text-align: center;
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(26, 26, 46, 0.5) 100%);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  padding: 4rem 3rem;
   max-width: 500px;
   width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  background: transparent;
 }
 
 .blog-empty-icon {
   font-family: 'Fira Code', monospace;
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-pink));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
 }
 
 .blog-empty h2 {
-  font-size: 1.3rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.5rem;
+  font-weight: 400;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
 }
 
 .blog-empty p {
-  font-size: 0.9rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
   color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* Dollars-style divider */
+.blog-empty::after {
+  content: '________________________';
+  display: block;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.1);
+  letter-spacing: 3px;
 }
 
 /* Nav active state */
 .nav-links a.active {
   color: var(--text-primary);
-  border-bottom: 2px solid var(--accent-blue);
-  padding-bottom: 2px;
+  position: relative;
 }
 
-/* Future blog post cards */
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--text-primary);
+}
+
+/* Future blog posts — Dollars forum style */
 .blog-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0;
   max-width: 700px;
   margin: 0 auto;
 }
 
 .blog-post {
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(26, 26, 46, 0.5) 100%);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
+  display: block;
+  padding: 1.5rem 2rem;
   text-decoration: none;
   color: var(--text-primary);
-  transition: border-color 0.3s, transform 0.3s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.3s;
+}
+
+.blog-post:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .blog-post:hover {
-  border-color: var(--accent-blue);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .blog-post-date {
   font-family: 'Fira Code', monospace;
-  font-size: 0.75rem;
-  color: var(--accent-pink);
-  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  letter-spacing: 1px;
 }
 
 .blog-post h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.5rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
 }
 
 .blog-post p {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Override nav brand to be a link */
+.nav-brand {
+  text-decoration: none;
+  color: var(--text-primary);
 }
