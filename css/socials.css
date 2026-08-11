@@ -99,3 +99,43 @@
   color: var(--text-primary);
   background: var(--bg-secondary);
 }
+
+@media (max-width: 768px) {
+  .hire-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .hire-text {
+    font-size: 0.8rem;
+  }
+
+  .hire-tags span {
+    font-size: 0.6rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .hire-btn {
+    padding: 0.9rem 2rem;
+    font-size: 0.75rem;
+  }
+
+  .socials-grid {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .social-link {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 1.1rem 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  .social-link:last-child {
+    border-bottom: none;
+  }
+
+  .socials-gif img {
+    width: 100px;
+  }
+}

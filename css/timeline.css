@@ -95,3 +95,36 @@
   border-color: var(--border-hover);
   color: var(--text-primary);
 }
+
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    left: 6px;
+  }
+
+  .timeline-marker {
+    left: -1.7rem;
+    width: 8px;
+    height: 8px;
+  }
+
+  .timeline-content {
+    padding: 1.2rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 0.95rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.78rem;
+  }
+
+  .timeline-tags span {
+    font-size: 0.6rem;
+    padding: 0.35rem 0.6rem;
+  }
+}

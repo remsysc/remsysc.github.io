@@ -63,3 +63,38 @@
   border-radius: 0;
   opacity: 0.9;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 5rem 1.5rem 2rem;
+    min-height: auto;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .hero-description {
+    font-size: 0.8rem;
+  }
+
+  .hero-terminal {
+    font-size: 0.7rem;
+    padding: 0.8rem 1rem;
+    word-break: break-all;
+  }
+
+  .hero-gif img {
+    width: 180px;
+  }
+}

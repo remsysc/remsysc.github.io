@@ -53,65 +53,35 @@
   letter-spacing: 2px;
 }
 
-/* Responsive */
+/* Global mobile adjustments for sections and footer */
 @media (max-width: 768px) {
-  .nav {
-    padding: 1rem 1.5rem;
+  .section {
+    padding: 3.5rem 1.2rem;
   }
 
-  .nav-links {
-    gap: 1rem;
+  .section-title {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
   }
 
-  .hero-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
+  .subsection-title {
+    font-size: 0.7rem;
+    margin-bottom: 1.2rem;
+    margin-top: 2rem;
   }
 
-  .hero-title {
-    font-size: 2.2rem;
+  .footer {
+    padding: 2rem 1.2rem;
+    font-size: 0.65rem;
   }
 
-  .about-container {
-    flex-direction: column;
+  .dollars-screen p {
+    font-size: 2rem;
+    letter-spacing: 5px;
   }
 
-  .about-gif img {
-    width: 150px;
-  }
-
-  .about-row .label {
-    min-width: 100px;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .specialty-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .specialty-card {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .specialty-card:last-child {
-    border-bottom: none;
-  }
-
-  .socials-grid {
-    flex-direction: column;
-  }
-
-  .social-link {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .social-link:last-child {
-    border-bottom: none;
+  .dollars-screen span {
+    font-size: 0.7rem;
   }
 }

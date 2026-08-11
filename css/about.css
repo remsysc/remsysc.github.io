@@ -90,3 +90,59 @@
   color: var(--text-secondary);
   line-height: 1.7;
 }
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .about-gif img {
+    width: 140px;
+  }
+
+  .about-card {
+    padding: 1.5rem;
+  }
+
+  .about-row {
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.8rem 0;
+  }
+
+  .about-row .label {
+    min-width: unset;
+    font-size: 0.7rem;
+  }
+
+  .about-row .separator {
+    display: none;
+  }
+
+  .about-row .value {
+    font-size: 0.8rem;
+  }
+
+  .specialty-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .specialty-card {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+
+  .specialty-card:last-child {
+    border-bottom: none;
+  }
+
+  .specialty-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .specialty-card p {
+    font-size: 0.78rem;
+  }
+}

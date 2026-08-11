@@ -176,3 +176,48 @@
   padding: 0.5rem;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
+
+/* Mobile chat */
+@media (max-width: 768px) {
+  .chat-room {
+    max-width: 100%;
+    margin: 0 -0.5rem;
+  }
+
+  .chat-messages {
+    height: 300px;
+    padding: 0.8rem 0.5rem;
+    gap: 0.6rem;
+  }
+
+  .chat-icon-wrap {
+    width: 38px;
+  }
+
+  .chat-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .chat-icon-name {
+    font-size: 0.4rem;
+  }
+
+  .chat-bubble {
+    max-width: 70%;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  .chat-bubble .chat-text {
+    font-size: 0.75rem;
+  }
+
+  .chat-typing {
+    padding-left: 40px;
+  }
+
+  .typing-name {
+    font-size: 0.65rem;
+  }
+}
