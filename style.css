@@ -70,28 +70,24 @@ body {
   position: relative;
 }
 
-/* Cloudflare-style geometric grid & luminous neon-blue atmospheric lighting */
+/* Crisp subtle dotted canvas in neon blue branding */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: 
-    linear-gradient(to right, rgba(0, 210, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 210, 255, 0.045) 1px, transparent 1px),
-    radial-gradient(rgba(0, 210, 255, 0.18) 1px, transparent 1px);
-  background-size: 36px 36px, 36px 36px, 36px 36px;
-  mask-image: radial-gradient(ellipse 95% 80% at 50% 18%, #000 35%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 80% at 50% 18%, #000 35%, transparent 85%);
+  background-image: radial-gradient(rgba(0, 210, 255, 0.25) 1.25px, transparent 1.25px);
+  background-size: 26px 26px;
   pointer-events: none;
   z-index: -1;
 }
 
+/* Ambient Cloudflare-style atmospheric neon-blue lighting */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   background-image: 
-    radial-gradient(ellipse 85% 55% at 50% -12%, rgba(0, 210, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 85% 55% at 50% -12%, rgba(0, 210, 255, 0.18), transparent 70%),
     radial-gradient(circle 700px at 85% 30%, rgba(14, 165, 233, 0.09), transparent 65%),
     radial-gradient(circle 500px at 15% 75%, rgba(0, 240, 255, 0.05), transparent 60%);
   pointer-events: none;
