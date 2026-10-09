@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://remsysc.github.io/sitemap.xml
+Sitemap: https://remsysc.knr-collective.workers.dev/sitemap.xml
