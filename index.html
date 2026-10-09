@@ -20,12 +20,14 @@
 </head>
 <body>
 
+  <a href="#about" class="skip-link">Skip to main content</a>
+
   <!-- Animated Background Blocks -->
-  <canvas id="bg-canvas"></canvas>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
   <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-brand">「 Rem 」</div>
+  <nav class="nav" aria-label="Main Navigation">
+    <a href="#" class="nav-brand" aria-label="Rem Home">「 Rem 」</a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span class="nav-toggle-bar"></span>
       <span class="nav-toggle-bar"></span>
@@ -42,6 +44,8 @@
       <li><a href="blog.html">Blog</a></li>
     </ul>
   </nav>
+
+  <main id="main-content">
 
   <!-- Hero Section -->
   <section class="hero">
@@ -329,16 +333,18 @@
   </section>
 
   <!-- Dollars Chat Room -->
-  <section class="section">
+  <section id="chat" class="section" aria-label="Dollars Chat Room">
     <h2 class="section-title">>>  Dollars Chat Room</h2>
     <div class="chat-room">
       <div class="chat-header">
         <span class="chat-status">LIVE</span>
         <span class="chat-users"><span id="user-count">3</span> online</span>
       </div>
-      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-label="Dollars simulated chat"></div>
     </div>
   </section>
+
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
