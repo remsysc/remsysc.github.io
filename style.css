@@ -4,24 +4,34 @@
 
 /* --- Design Tokens & Variables --- */
 :root {
-  --bg-canvas: #090a0f;
+  --bg-canvas: #07090e;
   --bg-surface: rgba(255, 255, 255, 0.03);
   --bg-surface-hover: rgba(255, 255, 255, 0.06);
   --bg-surface-active: rgba(255, 255, 255, 0.09);
-  --bg-elevated: #11131a;
+  --bg-elevated: #0f131d;
 
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.18);
-  --border-active: rgba(246, 130, 31, 0.5);
+  --border-hover: rgba(0, 210, 255, 0.3);
+  --border-active: rgba(0, 210, 255, 0.6);
 
   --text-primary: #ffffff;
-  --text-secondary: #c4c8d4;
-  --text-muted: #8b92a5;
+  --text-secondary: #c5d0e0;
+  --text-muted: #8292a6;
 
-  --accent-orange: #f6821f;
-  --accent-amber: #faad3f;
+  /* Neon Blue Signature Palette */
+  --neon-blue: #00d2ff;
+  --neon-cyan: #00f0ff;
+  --neon-electric: #38bdf8;
+  --neon-deep: #0284c7;
+  --neon-glow: rgba(0, 210, 255, 0.35);
+  --neon-glow-subtle: rgba(0, 210, 255, 0.12);
+  --neon-glow-ambient: rgba(0, 210, 255, 0.05);
+
+  /* Legacy color aliases mapped to neon blue branding */
+  --accent-orange: var(--neon-blue);
+  --accent-amber: var(--neon-electric);
   --accent-blue: #3b82f6;
-  --accent-cyan: #06b6d4;
+  --accent-cyan: var(--neon-cyan);
   --accent-emerald: #10b981;
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -60,20 +70,32 @@ body {
   position: relative;
 }
 
-/* Subtle Cloudflare-style geometric dot-grid & ambient light */
+/* Cloudflare-style geometric grid & luminous neon-blue atmospheric lighting */
 body::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    radial-gradient(ellipse 90% 60% at 50% -15%, rgba(246, 130, 31, 0.12), transparent 70%);
-  background-size: 28px 28px, 100% 100%;
+    linear-gradient(to right, rgba(0, 210, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 210, 255, 0.045) 1px, transparent 1px),
+    radial-gradient(rgba(0, 210, 255, 0.18) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px;
+  mask-image: radial-gradient(ellipse 95% 80% at 50% 18%, #000 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 80% at 50% 18%, #000 35%, transparent 85%);
   pointer-events: none;
   z-index: -1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(ellipse 85% 55% at 50% -12%, rgba(0, 210, 255, 0.16), transparent 70%),
+    radial-gradient(circle 700px at 85% 30%, rgba(14, 165, 233, 0.09), transparent 65%),
+    radial-gradient(circle 500px at 15% 75%, rgba(0, 240, 255, 0.05), transparent 60%);
+  pointer-events: none;
+  z-index: -2;
 }
 
 /* Accessibility Skip Link */
@@ -96,7 +118,7 @@ body::before {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-orange);
+  outline: 2px solid var(--neon-cyan);
   outline-offset: 3px;
 }
 
@@ -142,8 +164,8 @@ body::before {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--accent-orange);
-  box-shadow: 0 0 10px var(--accent-orange);
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
 }
 
 .brand-title {
@@ -229,7 +251,7 @@ body::before {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--accent-orange);
+  color: var(--neon-cyan);
   margin-bottom: 0.6rem;
 }
 
@@ -297,7 +319,7 @@ body::before {
 }
 
 .hero-title-highlight {
-  background: linear-gradient(135deg, #ffffff 40%, #faad3f 100%);
+  background: linear-gradient(135deg, #ffffff 30%, var(--neon-blue) 75%, var(--neon-cyan) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -322,21 +344,21 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ffffff;
-  color: #090a0f;
+  background: var(--neon-blue);
+  color: #07090e;
   font-size: 0.925rem;
   font-weight: 600;
   padding: 0.8rem 1.6rem;
   border-radius: var(--radius-md);
   text-decoration: none;
   transition: var(--transition);
-  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 210, 255, 0.28);
 }
 
 .btn-primary:hover {
-  background: #e5e7eb;
+  background: #38bdf8;
   transform: translateY(-1px);
-  box-shadow: 0 6px 22px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 25px rgba(0, 210, 255, 0.45);
 }
 
 .btn-secondary {
@@ -403,15 +425,50 @@ body::before {
 
 .profile-card:hover {
   border-color: var(--border-hover);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 210, 255, 0.08);
 }
 
+/* Hero Profile Frame & Outline Trailing Beam */
+.profile-avatar-frame,
 .profile-avatar-wrap {
   position: relative;
   border-radius: var(--radius-md);
-  overflow: hidden;
+  padding: 2px;
   margin-bottom: 1.5rem;
-  border: 1px solid var(--border-subtle);
-  background: #000;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* Luminous animated line trailing the outline */
+.avatar-border-beam {
+  position: absolute;
+  top: -75%;
+  left: -75%;
+  width: 250%;
+  height: 250%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 250deg,
+    rgba(0, 210, 255, 0.12) 280deg,
+    rgba(0, 210, 255, 0.6) 320deg,
+    var(--neon-cyan) 350deg,
+    #ffffff 358deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.profile-avatar-inner {
+  position: relative;
+  border-radius: calc(var(--radius-md) - 2px);
+  overflow: hidden;
+  background: #07090e;
+  z-index: 2;
 }
 
 .profile-avatar {
@@ -419,11 +476,45 @@ body::before {
   height: auto;
   display: block;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Trailing Line outline activation on hover */
+.profile-avatar-frame:hover,
+.profile-card:hover .profile-avatar-frame,
+.profile-card:hover .profile-avatar-wrap {
+  box-shadow: 
+    0 0 25px rgba(0, 210, 255, 0.35),
+    0 0 50px rgba(0, 210, 255, 0.15),
+    0 15px 35px -10px rgba(0, 0, 0, 0.8);
+}
+
+.profile-avatar-frame:hover .avatar-border-beam,
+.profile-card:hover .avatar-border-beam {
+  opacity: 1;
+  animation: borderBeamSpin 2.2s linear infinite;
+}
+
+.profile-avatar-frame:hover .profile-avatar,
 .profile-card:hover .profile-avatar {
-  transform: scale(1.02);
+  transform: scale(1.025);
+}
+
+@keyframes borderBeamSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-border-beam {
+    animation: none !important;
+    background: var(--neon-cyan);
+    opacity: 0.6;
+  }
 }
 
 .profile-badge-overlay {
@@ -483,7 +574,7 @@ body::before {
 }
 
 .profile-meta-link {
-  color: var(--accent-orange);
+  color: var(--neon-cyan);
   text-decoration: none;
   transition: var(--transition);
 }
@@ -494,7 +585,7 @@ body::before {
 
 /* --- Spotlight: KNR Collective Venture --- */
 .venture-card {
-  background: linear-gradient(135deg, rgba(246, 130, 31, 0.04) 0%, rgba(59, 130, 246, 0.04) 100%), var(--bg-surface);
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.05) 0%, rgba(56, 189, 248, 0.03) 100%), var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 3rem;
@@ -504,8 +595,8 @@ body::before {
 }
 
 .venture-card:hover {
-  border-color: rgba(246, 130, 31, 0.35);
-  box-shadow: 0 12px 36px -10px rgba(246, 130, 31, 0.08);
+  border-color: rgba(0, 210, 255, 0.35);
+  box-shadow: 0 16px 40px -10px rgba(0, 210, 255, 0.12);
 }
 
 .venture-header {
@@ -532,9 +623,9 @@ body::before {
   letter-spacing: 0.06em;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-sm);
-  background: rgba(246, 130, 31, 0.12);
-  color: var(--accent-orange);
-  border: 1px solid rgba(246, 130, 31, 0.3);
+  background: rgba(0, 210, 255, 0.12);
+  color: var(--neon-cyan);
+  border: 1px solid rgba(0, 210, 255, 0.3);
 }
 
 .venture-title {
@@ -614,8 +705,8 @@ body::before {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--accent-orange);
+  background: rgba(0, 210, 255, 0.08);
+  color: var(--neon-cyan);
   flex-shrink: 0;
 }
 
@@ -726,12 +817,13 @@ body::before {
 
 .project-card-flagship {
   grid-column: span 2;
-  border-color: rgba(246, 130, 31, 0.3);
-  background: linear-gradient(135deg, rgba(246, 130, 31, 0.03) 0%, rgba(255, 255, 255, 0.02) 100%), var(--bg-surface);
+  border-color: rgba(0, 210, 255, 0.3);
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%), var(--bg-surface);
 }
 
 .project-card-flagship:hover {
-  border-color: rgba(246, 130, 31, 0.6);
+  border-color: var(--neon-blue);
+  box-shadow: 0 16px 36px -12px rgba(0, 210, 255, 0.2);
 }
 
 .project-top {
@@ -746,7 +838,7 @@ body::before {
   font-size: 0.725rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: var(--accent-orange);
+  color: var(--neon-cyan);
   letter-spacing: 0.05em;
 }
 
@@ -887,9 +979,9 @@ body::before {
 }
 
 .timeline-step.active .timeline-marker-dot {
-  border-color: var(--accent-orange);
-  background: var(--accent-orange);
-  box-shadow: 0 0 12px var(--accent-orange);
+  border-color: var(--neon-cyan);
+  background: var(--neon-blue);
+  box-shadow: 0 0 14px var(--neon-cyan);
 }
 
 .timeline-step-card {
@@ -909,7 +1001,7 @@ body::before {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--accent-orange);
+  color: var(--neon-cyan);
   text-transform: uppercase;
   margin-bottom: 0.35rem;
 }
@@ -930,7 +1022,7 @@ body::before {
 
 /* --- Contact & Socials CTA --- */
 .contact-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(246, 130, 31, 0.04) 100%), var(--bg-surface);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 210, 255, 0.05) 100%), var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 3.5rem;
@@ -998,7 +1090,7 @@ body::before {
 .btn-discord:hover { border-color: #5865f2; color: #a5b4fc; }
 .btn-facebook:hover { border-color: #1877f2; color: #93c5fd; }
 .btn-instagram:hover { border-color: #e1306c; color: #f472b6; }
-.btn-knr:hover { border-color: var(--accent-orange); color: var(--accent-amber); }
+.btn-knr:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); box-shadow: 0 0 16px rgba(0, 210, 255, 0.25); }
 
 /* --- Footer --- */
 .site-footer {
