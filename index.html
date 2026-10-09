@@ -16,12 +16,15 @@
   <meta property="og:image" content="assets/profile.webp">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Fonts & Resource Preloads -->
+  <!-- Fonts & Resource Hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/profile.webp" type="image/webp" fetchpriority="high">
-  <link rel="stylesheet" href="style.css?v=20261009-mosaic-legibility">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20261009-perf-opt">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap">
+  </noscript>
 </head>
 <body>
 
@@ -35,7 +38,7 @@
   <!-- Navigation Header -->
   <header class="site-header">
     <div class="container nav-container">
-      <a href="#main-content" class="brand" aria-label="Jeremiah Laza homepage">
+      <a href="#main-content" class="brand" aria-label="Jeremiah Laza / Tech Lead">
         <span class="brand-dot" aria-hidden="true"></span>
         <span>Jeremiah Laza</span>
         <span class="brand-title">/ Tech Lead</span>
@@ -114,7 +117,11 @@
             <div class="profile-avatar-frame" id="profile-frame">
               <div class="avatar-border-beam" aria-hidden="true"></div>
               <div class="profile-avatar-inner">
-                <img src="assets/profile.webp" alt="Jeremiah (Rem) Laza" class="profile-avatar" width="280" height="370" fetchpriority="high" decoding="async">
+                <picture>
+                  <source type="image/avif" srcset="assets/profile-380w.avif 380w, assets/profile-560w.avif 560w" sizes="(max-width: 768px) 365px, 280px">
+                  <source type="image/webp" srcset="assets/profile-380w.webp 380w, assets/profile-560w.webp 560w" sizes="(max-width: 768px) 365px, 280px">
+                  <img src="assets/profile.webp" srcset="assets/profile-380w.webp 380w, assets/profile-560w.webp 560w" sizes="(max-width: 768px) 365px, 280px" alt="Jeremiah (Rem) Laza" class="profile-avatar" width="280" height="370" fetchpriority="high" decoding="async">
+                </picture>
                 <div class="profile-badge-overlay">
                   <span class="profile-badge-name">Jeremiah Laza</span>
                   <span class="profile-badge-status">● Active Node</span>
