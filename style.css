@@ -1146,8 +1146,7 @@ main,
 /* Brand-specific hover accents */
 .btn-github:hover { border-color: #f0f6fc; color: #ffffff; }
 .btn-email:hover { border-color: #8b5cf6; color: #c4b5fd; }
-.btn-discord:hover { border-color: #5865f2; color: #a5b4fc; }
-.btn-facebook:hover { border-color: #1877f2; color: #93c5fd; }
+.btn-linkedin:hover { border-color: #0a66c2; color: #70b5f9; }
 .btn-instagram:hover { border-color: #e1306c; color: #f472b6; }
 .btn-knr:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); box-shadow: 0 0 16px rgba(0, 210, 255, 0.25); }
 
