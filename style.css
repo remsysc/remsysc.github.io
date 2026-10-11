@@ -410,14 +410,16 @@ body {
 /* --- Hero Section (Dark, Cinematic & Technical) --- */
 .hero {
   background: var(--bg-dark);
-  min-height: 94vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-top: 100px;
-  padding-bottom: var(--space-12);
+  padding-top: max(88px, 10vh);
+  padding-bottom: max(2rem, 5vh);
+  box-sizing: border-box;
 }
 
 /* Ambient Radial Lights behind Hero */
@@ -457,12 +459,20 @@ body {
   gap: var(--space-12);
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 @media (max-width: 990px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: 100px;
+    padding-bottom: var(--space-12);
+    justify-content: flex-start;
+  }
   .hero-inner {
     grid-template-columns: 1fr;
-    gap: var(--space-12);
-    padding-top: var(--space-8);
+    gap: var(--space-8);
+    padding-top: var(--space-4);
   }
 }
 
@@ -698,11 +708,11 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  filter: grayscale(85%) contrast(1.1);
-  transition: filter var(--dur-base) var(--ease-out);
+  filter: none;
+  transition: transform var(--dur-base) var(--ease-out);
 }
 .hero-dossier-card:hover .dossier-avatar-img {
-  filter: grayscale(20%) contrast(1.15) brightness(1.05);
+  transform: scale(1.04);
 }
 
 .dossier-info {
